@@ -1,0 +1,94 @@
+<div id="front" style="display: flex; margin: auto; width: 700px;">
+<h2 style="    height: 20px;
+    position: absolute;
+    margin-left: 220;
+    margin-top: 100;
+    color:#00AAFF"> Projects </h2>
+<table  style="width: 200px; height: 90px;margin-top: 150px;">
+     <tr>
+    <td class="btncontainer">   
+     <button class="frontbtn" onclick="projectwindow()">
+      Nuovo Progetto
+      </button>
+    </td>
+  </tr>
+  <tr>
+  <td>
+    &nbsp;
+  </td>
+</tr>
+  <tr>
+    <td class="btncontainer"> 
+      <button class="frontbtn" onclick="newFile()">
+        Nuovo File...
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td class="btncontainer"> 
+      <button class="frontbtn" onclick="openFile()">
+        Apri File...
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td class="btncontainer">   
+     <button class="frontbtn" onclick="openDirectory()">
+        Apri Cartella...
+      </button>
+    </td>
+  </tr>
+
+
+
+
+  </table>
+
+<div id="fronttarget" style="border-top:0.5px solid #777; margin-top: 150px; margin-left: 20px; width: 400px; height: 50%; overflow: auto;">
+  
+</div>
+</div>
+<div class="wave"> </div>
+<script>
+
+function makeProjectList() {
+  db.projects.loadDatabase();
+db.projects.find({}).sort({ date: -1 }).exec(function (err, docs) {
+    console.log(err,docs);
+        var html = docs.map(function(element) {
+         // console.log(new Date(element.date).getDate())
+         console.log(element.name);
+          var date = new Date(element.date);
+          var date1 = returnDate(element.date);
+            return '<tr id="'+ element._id +'" class="fronttr" onclick="loadproject(this.id)"><td class="fronttd"><p style="margin-left:10px;"> '+ element.name +' </p></td><td style="color: #ddd; text-align:right; border:none"> <p style="margin-right:10px; font-size:12px;">'+ date1 +'</p> </td><td><button id="'+element._id+'" class="delete_btn" onclick="delete_project(this.id)">X</button></td></tr>';
+            
+        }).join('');
+   document.getElementById('fronttarget').innerHTML = '<table class="fronttable" border="0" style="width:100%">' + html + '</table>';
+})
+}
+
+makeProjectList();
+function returnDate(value) {
+  var currentdate = Date.parse(new Date());
+  var projectdate = Date.parse(value);
+  /*console.log(currentdate +"0");
+  console.log(projectdate +"1");*/
+  if ((currentdate - projectdate) <= 59000) {
+    return parseInt((currentdate - projectdate)/1000)+" Seconds";
+  } else if ((currentdate - projectdate) <= 3600000) {
+     return parseInt(((currentdate - projectdate)/1000)/60)+" Minutes";
+  } else if ((currentdate - projectdate) <= 216000000) {
+    return parseInt((((currentdate - projectdate)/1000)/60)/60)+" Hours";
+  } else if ((currentdate - projectdate) <= 5184000000) {
+    return parseInt(((((currentdate - projectdate)/1000)/60)/60)/24)+" Days";
+  }
+  }
+
+function delete_project(id){
+  event.stopPropagation();
+  db.projects.remove({ _id: id }, {}, function (err, numRemoved) {
+    console.log(id, err, numRemoved);
+    makeProjectList();
+});
+}
+</script>

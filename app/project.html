@@ -1,0 +1,179 @@
+
+<link rel="stylesheet" href="style.css">
+<title> Nuovo Progetto </title>
+<table style="margin: auto; margin-top:10vh;">
+	<tr>
+		<td class="ftptext" style="font-size: 18px; color: #0099ff;">
+		Locale
+		</td>
+	</tr>
+	<tr>
+		<td class="ftptext">
+		Nome:
+		</td>
+
+		<td class="ftpsecondcol">
+		<input id="name" class="ftpinput" type="text">
+		</td>
+	</tr>
+	<tr>
+		<td class="ftptext">
+		Directory:
+		</td>
+
+		<td class="ftpsecondcol">
+		<input id="path" class="ftpinput" type="text">
+		</td>
+		<td>
+			 <img style="border: 1px solid gray; border-radius: 5px; width:18px; height:18px;" onclick="getProjectPath();" src='images/closed.svg'>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			&nbsp;
+		</td>
+		</tr>
+		<tr>
+		<td class="ftptext" style="font-size: 18px; color: #0099ff;">
+		Remoto
+		</td>
+	</tr>
+	<tr>
+		<td class="ftptext">
+		Indirizzo FTP:
+		</td>
+		<td class="ftpsecondcol">
+		<input id="address" class="ftpinput" type="text">
+		</td>
+
+	</tr>
+
+	<tr>
+		<td class="ftptext">
+		Porta:
+		</td>
+		<td class="ftpsecondcol">
+		<input id="port" class="ftpinput" style="width: 50px;" type="text">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			&nbsp;
+		</td>
+		</tr>
+	<tr>
+		<td class="ftptext">
+		Nome Utente:
+		</td>
+		<td class="ftpsecondcol">
+		<input id="username" class="ftpinput" type="text">
+		</td>
+	</tr>
+	<tr>
+		<td class="ftptext">
+		Password:
+		</td>
+		<td class="ftpsecondcol">
+		<input id="password" class="ftpinput" type="text">
+		</td>
+	</tr>
+	<tr>
+		<td class="ftptext">
+		
+		</td>
+		<td class="ftptext">
+		<button onclick="tryftp()" class="try"> Prova FTP... </button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			&nbsp;
+		</td>
+		</tr>
+	<tr>
+		<td class="ftptext">
+		
+		</td>
+		<td class="ftptext">
+					<button class="try" style="height: 23px; width:70px;" onclick="saveproject()"> Salva </button>
+
+			<button style="margin-right:10px; height: 23px; width:70px;" class="try" onclick="exit_project()"> Annulla </button>
+		</td>
+	</tr>
+</table>
+<script src="config.js"></script>
+
+<script type="text/javascript">
+	function getProjectPath() {
+dialog.showOpenDialog({
+    filters: [
+
+      {
+
+      }
+
+    ],
+    properties: ['openDirectory'],
+  }, function (fileNames) {
+  	console.log(fileNames);
+  	document.getElementById('path').value = fileNames;
+})}
+
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('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'); //Qui ci andrà la master password una volta che avrà superato il check con l'hash.
+  
+const encryptedString = cryptr.encrypt('bacon');
+
+	function saveproject(){
+  var doc = {
+  
+    name: document.getElementById('name').value,
+    path: document.getElementById('path').value,
+    address: document.getElementById('address').value,
+    port: document.getElementById('port').value,
+    username: document.getElementById('username').value,
+    password: cryptr.encrypt(document.getElementById('password').value),
+    date: new Date()
+  }
+db.projects.insert(doc, function (err, newDoc) {
+	console.log(err, newDoc);
+ipcRenderer.send('new_project');
+  window.close();
+})
+
+}
+
+const remote = require('electron').remote;
+function exit_project() {
+
+  var window = remote.getCurrentWindow();
+  window.close();
+
+}
+
+
+
+function tryftp() {
+var Client = require('ftp');
+ 
+  var c = new Client();
+  c.on('ready', function() {
+    c.list("", function(err, fileStream) {
+      if (err) {alert(err)};
+      alert("Connesso correttamente.");
+      
+    });
+    c.end();
+  });
+  // connect to localhost:21 as anonymous
+  c.connect({
+    host: document.getElementById('address').value,
+    port: document.getElementById('port').value,
+    user: document.getElementById('username').value,
+    password: document.getElementById('password').value
+  });
+  c.on("error", function(err){
+  	alert(err);
+  })
+}
+</script>

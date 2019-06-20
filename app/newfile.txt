@@ -1,0 +1,6 @@
+Da aggiungere per v1.0
+
+- Drag and drop files (check isdir or copy to parent, if dropped on editor, open file)
+- Gestione progetti (like DreamWeaver) con NeDB
+- FTP support
+- PhP webpage with running back server

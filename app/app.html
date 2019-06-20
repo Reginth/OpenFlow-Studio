@@ -1,0 +1,54 @@
+<html>
+  <head>
+
+    <meta charset="UTF-8">
+    <title>Web Editor</title>
+    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="jqueryui.css">
+  </head>
+  <body style="overflow: hidden;">
+  <div style="height: 21px; background-color: #404040; -webkit-app-region: drag; position: relative;"><div style="user-select: none; position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%); color: #FFF; font-size: 12px;">OpenFlow Studio</div></div>
+<div  id="tabcontainer" class="tabcontainer">
+ 
+    <div id="tab" class="tab" style="height:30px"> 
+    </div>
+     <div class="scroller"><div class="arrows"> <div id="leftarrow" class="leftarrow">&#9668;</div><div id="rightarrow" class="rightarrow">&#9658;</div></div></div>
+  </div>
+
+<div id="dialog"></div>
+    <div id="container" style="width: calc(100vw - 200px);min-height:calc(100vh - 30px);max-height:calc(100vh - 30px);border:0px; float:left; background-color: #222"> </div>
+
+    <div id="rightmenu" style="max-width: 300px; min-width: 100px; width:200px; float:right; background-color: #282828; height: 100vh; position: absolute;right: 0; display: flex; flex-direction: column; justify-content: space-around;"> 
+
+
+    <div class="btncontainermenu">
+
+       <div class="btnrightcontainer"> <button class="btnmenu" onclick="projectwindow()"> Nuovo Progetto... </button> </div>
+              <div class="btnrightcontainer"> <button class="btnmenu" onclick="newFile()"> Nuovo File... </button> </div>
+
+
+       <div id="options" style="display: none"></div>
+     </div>
+     <div style="margin-top: 40px">
+     <select id="select_project" class="selection">
+  
+</select>
+</div>
+    <div style="margin-top: 40px">
+     <div class="mode_selector"><button class="mode_button mode_active" onClick="local_folder(this)">Locale</button><button class="mode_button" onClick="remote_folder(this)">Remoto</button></div>
+     <div id="directory" class="directory"></div>
+     <div id="remote_directory" class="directory" style="display: none"></div>
+   </div>
+   <div class="bottom-menu">
+
+   </div>
+</div>
+
+  </body>
+  <script>window.$ = window.jQuery = require('../node_modules/jquery/dist/jquery.min.js');</script>
+  <script src="../node_modules/jquery/dist/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+<script src="jqueryui.js"></script>
+<script src="jqueryuianim.js"></script>
+<script src="config.js"></script>
+ <script src="custom.js"></script>
+</html>
